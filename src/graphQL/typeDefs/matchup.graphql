@@ -1,5 +1,7 @@
 type Matchup {
   id: ID
+  name: String
+  description: String
   dateTime: String
   homeTeam: Team
   awayTeam: Team

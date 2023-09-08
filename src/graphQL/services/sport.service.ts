@@ -19,24 +19,18 @@ const prisma = new PrismaClient();
 
 export const getSports = async ({ info }: GetSportsArgs) => {
   const extractedSelections = extractSelection(info);
-  const leagueInd = extractedSelections.includes('leagues');
+  const leagueInd = extractedSelections.includes('league');
+  const matchupInd = extractedSelections.includes('matchup');
 
-  //   if (leagueInd) {
-  //     return await prisma.sport.findMany({ include: { League: true } });
-  //   }
-
-  return await prisma.sport.findMany({ include: { league: leagueInd } });
+  return await prisma.sport.findMany({ include: { league: leagueInd, matchup: matchupInd } });
 };
 
 export const getSport = async ({ id, info }: GetSportArgs) => {
   const extractedSelections = extractSelection(info);
-  const leagueInd = extractedSelections.includes('leagues');
+  const leagueInd = extractedSelections.includes('league');
+  const matchupInd = extractedSelections.includes('matchup');
 
-  //   if (leagueInd) {
-  //     return await prisma.sport.findUnique({ where: { id }, include: { League: true } });
-  //   }
-
-  return await prisma.sport.findUnique({ where: { id }, include: { league: leagueInd } });
+  return await prisma.sport.findUnique({ where: { id }, include: { league: leagueInd, matchup: matchupInd } });
 };
 
 export const createSport = async ({ name, logo_url }: SportInput) => {
