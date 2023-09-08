@@ -22,6 +22,8 @@ type Query {
 }
 
 input MatchupInput {
+  name: String
+  description: String
   dateTime: String
   homeTeam: ID
   awayTeam: ID
