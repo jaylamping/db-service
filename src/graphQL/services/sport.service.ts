@@ -25,7 +25,7 @@ export const getSports = async ({ info }: GetSportsArgs) => {
   //     return await prisma.sport.findMany({ include: { League: true } });
   //   }
 
-  return await prisma.sport.findMany({ include: { League: leagueInd } });
+  return await prisma.sport.findMany({ include: { league: leagueInd } });
 };
 
 export const getSport = async ({ id, info }: GetSportArgs) => {
@@ -36,7 +36,7 @@ export const getSport = async ({ id, info }: GetSportArgs) => {
   //     return await prisma.sport.findUnique({ where: { id }, include: { League: true } });
   //   }
 
-  return await prisma.sport.findUnique({ where: { id }, include: { League: leagueInd } });
+  return await prisma.sport.findUnique({ where: { id }, include: { league: leagueInd } });
 };
 
 export const createSport = async ({ name, logo_url }: SportInput) => {
