@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
-import { usersResolver } from './resolvers/user.resolver';
+import { sportResolver } from './resolvers/sport.resolver';
 
 const sportTypes = readFileSync(path.join(__dirname, './typeDefs/sport.graphql'), {
   encoding: 'utf-8'
@@ -27,9 +27,9 @@ export const typeDefs = `
 
 export const resolvers = {
   Query: {
-    ...usersResolver.Query
+    ...sportResolver.Query
   },
   Mutation: {
-    ...usersResolver.Mutation
+    ...sportResolver.Mutation
   }
 };

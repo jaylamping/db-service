@@ -10,31 +10,31 @@ datasource db {
 model Sport {
   id        String    @id @default(uuid()) @map("_id")
   name      String
-  logo_url  String
+  logo_url  String?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  League    League[]
-  Matchup   Matchup[]
-  Team      Team[]
+  league    League[]
+  matchup   Matchup[]
+  team      Team[]
 }
 
 model League {
   id        String    @id @default(uuid()) @map("_id")
   name      String
-  logo_url  String
+  logo_url  String?
   sport     Sport     @relation(fields: [sportId], references: [id])
   sportId   String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  Team      Team[]
-  Matchup   Matchup[]
+  team      Team[]
+  matchup   Matchup[]
 }
 
 model Team {
   id        String    @id @default(uuid()) @map("_id")
   name      String
   location  String
-  logo_url  String
+  logo_url  String?
   league    League    @relation(fields: [leagueId], references: [id])
   leagueId  String
   sport     Sport     @relation(fields: [sportId], references: [id])
@@ -56,6 +56,7 @@ model Matchup {
   sportId         String
   league          League   @relation(fields: [leagueId], references: [id])
   leagueId        String
+  logo_url        String?
   inProgress      Boolean
   primaryStream   String
   secondaryStream String
