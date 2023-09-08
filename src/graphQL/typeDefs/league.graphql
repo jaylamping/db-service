@@ -1,0 +1,25 @@
+type League {
+  id: ID
+  name: String
+  logo_url: String
+  sport: Sport
+  createdAt: String
+  updatedAt: String
+}
+
+type Query {
+  leagues: [League]
+  league(id: ID!): League
+}
+
+input LeagueInput {
+  name: String!
+  logo_url: String!
+  sport: ID!
+}
+
+type Mutation {
+  createLeague(input: LeagueInput!): League
+  updateLeague(id: ID!, input: LeagueInput!): League
+  deleteLeague(id: ID!): League
+}

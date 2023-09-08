@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 //import { typeDefs, resolvers } from './graphQL';
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
 dotenv.config();
 

@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Sport {
+  id        String    @id @default(uuid()) @map("_id")
+  name      String
+  logo_url  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  League    League[]
+  Matchup   Matchup[]
+  Team      Team[]
+}
+
+model League {
+  id        String    @id @default(uuid()) @map("_id")
+  name      String
+  logo_url  String
+  sport     Sport     @relation(fields: [sportId], references: [id])
+  sportId   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Team      Team[]
+  Matchup   Matchup[]
+}
+
+model Team {
+  id        String    @id @default(uuid()) @map("_id")
+  name      String
+  location  String
+  logo_url  String
+  league    League    @relation(fields: [leagueId], references: [id])
+  leagueId  String
+  sport     Sport     @relation(fields: [sportId], references: [id])
+  sportId   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  homeTeam  Matchup[] @relation(name: "homeTeam")
+  awayTeam  Matchup[] @relation(name: "awayTeam")
+}
+
+model Matchup {
+  id              String   @id @default(uuid()) @map("_id")
+  dateTime        DateTime
+  homeTeam        Team     @relation(name: "homeTeam", fields: [homeTeamId], references: [id])
+  homeTeamId      String
+  awayTeam        Team     @relation(name: "awayTeam", fields: [awayTeamId], references: [id])
+  awayTeamId      String
+  sport           Sport    @relation(fields: [sportId], references: [id])
+  sportId         String
+  league          League   @relation(fields: [leagueId], references: [id])
+  leagueId        String
+  inProgress      Boolean
+  primaryStream   String
+  secondaryStream String
+  tertiaryStream  String
+  fallbackStream  String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

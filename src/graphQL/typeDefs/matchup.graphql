@@ -1,0 +1,39 @@
+type Matchup {
+  id: ID
+  dateTime: String
+  homeTeam: Team
+  awayTeam: Team
+  sport: Sport
+  league: League
+  inProgress: Boolean
+  primarySteam: String
+  secondaryStream: String
+  tertiaryStream: String
+  fallbackStream: String
+  createdAt: String
+  updatedAt: String
+}
+
+type Query {
+  matchups: [Matchup]
+  matchup(id: ID!): Matchup
+}
+
+input MatchupInput {
+  dateTime: String
+  homeTeam: ID
+  awayTeam: ID
+  sport: ID
+  league: ID
+  inProgress: Boolean
+  primarySteam: String
+  secondaryStream: String
+  tertiaryStream: String
+  fallbackStream: String
+}
+
+type Mutation {
+  createMatchup(input: MatchupInput): Matchup
+  updateMatchup(id: ID!, input: MatchupInput): Matchup
+  deleteMatchup(id: ID!): Matchup
+}

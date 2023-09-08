@@ -1,31 +1,35 @@
-// import { readFileSync } from 'fs';
-// import path from 'path';
-// import { usersResolver } from './resolvers/user.resolver';
+import { readFileSync } from 'fs';
+import path from 'path';
+import { usersResolver } from './resolvers/user.resolver';
 
-// const userTypes = readFileSync(
-//   path.join(__dirname, './typeDefs/user.graphql'),
-//   {
-//     encoding: 'utf-8',
-//   }
-// );
+const sportTypes = readFileSync(path.join(__dirname, './typeDefs/sport.graphql'), {
+  encoding: 'utf-8'
+});
 
-// const postTypes = readFileSync(
-//   path.join(__dirname, './typeDefs/post.graphql'),
-//   {
-//     encoding: 'utf-8',
-//   }
-// );
+const leagueTypes = readFileSync(path.join(__dirname, './typeDefs/league.graphql'), {
+  encoding: 'utf-8'
+});
 
-// export const typeDefs = `
-//     ${userTypes}
-//     ${postTypes}
-// `;
+const teamTypes = readFileSync(path.join(__dirname, './typeDefs/team.graphql'), {
+  encoding: 'utf-8'
+});
 
-// export const resolvers = {
-//   Query: {
-//     ...usersResolver.Query,
-//   },
-//   Mutation: {
-//     ...usersResolver.Mutation,
-//   },
-// };
+const matchupTypes = readFileSync(path.join(__dirname, './typeDefs/matchup.graphql'), {
+  encoding: 'utf-8'
+});
+
+export const typeDefs = `
+    ${sportTypes}
+    ${leagueTypes}
+    ${teamTypes}
+    ${matchupTypes}
+`;
+
+export const resolvers = {
+  Query: {
+    ...usersResolver.Query
+  },
+  Mutation: {
+    ...usersResolver.Mutation
+  }
+};
