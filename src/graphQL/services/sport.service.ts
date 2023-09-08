@@ -49,3 +49,15 @@ export const createSport = async ({ name, logo_url }: SportInput) => {
 
   return createdSport;
 };
+
+export const updateSport = async ({ id, data }: { id: string; data: SportInput }) => {
+  const updatedSport = await prisma.sport.update({ where: { id }, data });
+
+  return updatedSport;
+};
+
+export const deleteSport = async ({ id }: { id: string }) => {
+  const deletedSport = await prisma.sport.delete({ where: { id } });
+
+  return deletedSport;
+};

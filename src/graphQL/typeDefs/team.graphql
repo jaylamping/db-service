@@ -17,7 +17,7 @@ type Query {
 input TeamInput {
   name: String
   location: String
-  logo_url: String
+  logo_url: String?
   leagueId: ID!
   sportId: ID!
 }

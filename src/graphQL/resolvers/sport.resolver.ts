@@ -1,20 +1,24 @@
 import { GraphQLResolveInfo } from 'graphql';
+import { createSport, deleteSport, updateSport, getSport, getSports } from '../services/sport.service';
 
 export const sportResolver = {
   Query: {
     sports: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
-      return context.prisma.sport.findMany();
+      return await getSports({ info });
+    },
+    sport: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
+      return await getSport({ id: args.id, info });
     }
   },
   Mutation: {
     createSport: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
-      return context.prisma.sport.create({ data: args.data });
+      return await createSport({ name: args.name, logo_url: args.logo_url });
     },
     updateSport: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
-      return context.prisma.sport.update({ where: { id: args.id }, data: args.data });
+      return await updateSport({ id: args.id, data: { name: args.name, logo_url: args.logo_url } });
     },
     deleteSport: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
-      return context.prisma.sport.delete({ where: { id: args.id } });
+      return await deleteSport({ id: args.id });
     }
   }
 };

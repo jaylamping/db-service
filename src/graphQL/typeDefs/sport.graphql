@@ -15,7 +15,7 @@ type Query {
 
 input SportInput {
   name: String
-  logo_url: String
+  logo_url: String?
 }
 
 type Mutation {
