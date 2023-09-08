@@ -2,6 +2,8 @@ import { PrismaClient } from '@prisma/client';
 import { extractSelection } from '../utils/extractSelections';
 import { GraphQLResolveInfo } from 'graphql';
 
+const prisma = new PrismaClient();
+
 interface GetSportsArgs {
   info: GraphQLResolveInfo;
 }
@@ -14,8 +16,6 @@ interface SportInput {
   name: string;
   logo_url: string;
 }
-
-const prisma = new PrismaClient();
 
 export const getSports = async ({ info }: GetSportsArgs) => {
   const extractedSelections = extractSelection(info);
