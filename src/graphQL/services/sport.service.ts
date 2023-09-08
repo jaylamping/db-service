@@ -34,24 +34,18 @@ export const getSport = async ({ id, info }: GetSportArgs) => {
 };
 
 export const createSport = async ({ name, logo_url }: SportInput) => {
-  const createdSport = await prisma.sport.create({
+  return await prisma.sport.create({
     data: {
       name,
       logo_url
     }
   });
-
-  return createdSport;
 };
 
 export const updateSport = async ({ id, data }: { id: string; data: SportInput }) => {
-  const updatedSport = await prisma.sport.update({ where: { id }, data });
-
-  return updatedSport;
+  return await prisma.sport.update({ where: { id }, data });
 };
 
 export const deleteSport = async ({ id }: { id: string }) => {
-  const deletedSport = await prisma.sport.delete({ where: { id } });
-
-  return deletedSport;
+  return await prisma.sport.delete({ where: { id } });
 };
