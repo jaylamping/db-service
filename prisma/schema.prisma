@@ -47,7 +47,7 @@ model Team {
 
 model Matchup {
   id              String   @id @default(uuid()) @map("_id")
-  vendorId        String   @unique
+  externalId      String   @unique
   name            String
   description     String?
   dateTime        DateTime
