@@ -14,7 +14,7 @@ interface GetLeagueArgs extends GetLeaguesArgs {
 
 interface LeagueInput {
   name: string;
-  logo_url: string;
+  logo_url?: string;
   sportId: string;
 }
 
@@ -35,13 +35,15 @@ export const getLeague = async ({ id, info }: GetLeagueArgs) => {
 };
 
 export const createLeague = async ({ name, logo_url, sportId }: LeagueInput) => {
-  return await prisma.league.create({
+  console.log('hi');
+  const newLeague = await prisma.league.create({
     data: {
       name,
       logo_url,
       sportId
     }
   });
+  console.log(newLeague);
 };
 
 export const updateLeague = async ({ id, data }: { id: string; data: LeagueInput }) => {

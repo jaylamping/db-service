@@ -12,13 +12,13 @@ export const sportResolver = {
   },
   Mutation: {
     createSport: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
-      return await createSport({ name: args.name, logo_url: args.logo_url });
+      return await createSport({ name: args.input.name, logo_url: args.input.logo_url });
     },
     updateSport: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
-      return await updateSport({ id: args.id, data: { name: args.name, logo_url: args.logo_url } });
+      return await updateSport({ id: args.input.id, data: { name: args.input.name, logo_url: args.input.logo_url } });
     },
     deleteSport: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
-      return await deleteSport({ id: args.id });
+      return await deleteSport({ id: args.input.id });
     }
   }
 };

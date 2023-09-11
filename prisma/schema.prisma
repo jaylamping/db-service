@@ -9,25 +9,25 @@ datasource db {
 
 model Sport {
   id        String    @id @default(uuid()) @map("_id")
-  name      String
+  name      String    @unique
   logo_url  String?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  League    League[]
-  Matchup   Matchup[]
-  Team      Team[]
+  league    League[]
+  matchup   Matchup[]
+  team      Team[]
 }
 
 model League {
   id        String    @id @default(uuid()) @map("_id")
-  name      String
+  name      String    @unique
   logo_url  String?
   sport     Sport     @relation(fields: [sportId], references: [id])
   sportId   String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  Team      Team[]
-  Matchup   Matchup[]
+  team      Team[]
+  matchup   Matchup[]
 }
 
 model Team {
@@ -39,10 +39,12 @@ model Team {
   leagueId  String
   sport     Sport     @relation(fields: [sportId], references: [id])
   sportId   String
-  homeTeam  Matchup[] @relation(name: "homeTeam")
-  awayTeam  Matchup[] @relation(name: "awayTeam")
+  homeTeam  Matchup[] @relation("homeTeam")
+  awayTeam  Matchup[] @relation("awayTeam")
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+
+  @@unique([name, leagueId])
 }
 
 model Matchup {
@@ -50,9 +52,9 @@ model Matchup {
   name            String
   description     String?
   dateTime        DateTime
-  homeTeam        Team     @relation(name: "homeTeam", fields: [homeTeamId], references: [id])
+  homeTeam        Team     @relation("homeTeam", fields: [homeTeamId], references: [id])
   homeTeamId      String
-  awayTeam        Team     @relation(name: "awayTeam", fields: [awayTeamId], references: [id])
+  awayTeam        Team     @relation("awayTeam", fields: [awayTeamId], references: [id])
   awayTeamId      String
   sport           Sport    @relation(fields: [sportId], references: [id])
   sportId         String

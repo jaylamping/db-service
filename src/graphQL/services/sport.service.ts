@@ -14,7 +14,7 @@ interface GetSportArgs extends GetSportsArgs {
 
 interface SportInput {
   name: string;
-  logo_url: string;
+  logo_url?: string;
 }
 
 export const getSports = async ({ info }: GetSportsArgs) => {
