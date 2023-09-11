@@ -21,8 +21,8 @@ const populateNFLTeams = async () => {
       name: team.strTeam,
       location: team.strStadiumLocation,
       logo_url: team.strTeamBadge,
-      sport: 'cf7c927c-33b5-49b7-8463-650c7dfa6de1',
-      league: '759170c2-c0dd-4aef-8bd9-4a63eba6c076'
+      sport: 'Football',
+      league: 'NFL'
     });
   });
 };
