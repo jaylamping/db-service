@@ -13,9 +13,9 @@ model Sport {
   logo_url  String?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  league    League[]
-  matchup   Matchup[]
-  team      Team[]
+  League    League[]
+  Matchup   Matchup[]
+  Team      Team[]
 }
 
 model League {
@@ -26,23 +26,23 @@ model League {
   sportId   String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  team      Team[]
-  matchup   Matchup[]
+  Team      Team[]
+  Matchup   Matchup[]
 }
 
 model Team {
   id        String    @id @default(uuid()) @map("_id")
   name      String
-  location  String
+  location  String?
   logo_url  String?
   league    League    @relation(fields: [leagueId], references: [id])
   leagueId  String
   sport     Sport     @relation(fields: [sportId], references: [id])
   sportId   String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
   homeTeam  Matchup[] @relation(name: "homeTeam")
   awayTeam  Matchup[] @relation(name: "awayTeam")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Matchup {
