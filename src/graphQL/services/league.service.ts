@@ -15,11 +15,7 @@ interface GetLeagueArgs extends GetLeaguesArgs {
 interface LeagueInput {
   name: string;
   logo_url: string;
-  sport: {
-    connect: {
-      id: string;
-    };
-  };
+  sportId: string;
 }
 
 export const getLeagues = async ({ info }: GetLeaguesArgs) => {
@@ -38,12 +34,12 @@ export const getLeague = async ({ id, info }: GetLeagueArgs) => {
   return await prisma.league.findUnique({ where: { id }, include: { team: teamInd, matchup: matchupInd } });
 };
 
-export const createLeague = async ({ name, logo_url, sport }: LeagueInput) => {
+export const createLeague = async ({ name, logo_url, sportId }: LeagueInput) => {
   return await prisma.league.create({
     data: {
       name,
       logo_url,
-      sport
+      sportId
     }
   });
 };
