@@ -41,6 +41,9 @@ export const createLeague = async ({ name, logo_url, sportId }: LeagueInput) => 
       name,
       logo_url,
       sportId
+    },
+    include: {
+      sport: true
     }
   });
   console.log(newLeague);

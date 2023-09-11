@@ -1,7 +1,7 @@
 import { GraphQLResolveInfo } from 'graphql';
 import { createLeague, deleteLeague, updateLeague, getLeague, getLeagues } from '../services/league.service';
 
-export const sportResolver = {
+export const leagueResolver = {
   Query: {
     leagues: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
       return await getLeagues({ info });
@@ -12,6 +12,7 @@ export const sportResolver = {
   },
   Mutation: {
     createLeague: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
+      console.log('balls');
       return await createLeague({ name: args.input.name, logo_url: args.input.logo_url, sportId: args.input.sportId });
     },
     updateLeague: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
