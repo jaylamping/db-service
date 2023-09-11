@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { extractSelection } from '../utils/extractSelections';
 import { GraphQLResolveInfo } from 'graphql';
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({ log: ['query', 'info', 'warn', 'error'] });
 
 interface GetLeaguesArgs {
   info: GraphQLResolveInfo;
@@ -41,9 +41,6 @@ export const createLeague = async ({ name, logo_url, sportId }: LeagueInput) => 
       name,
       logo_url,
       sportId
-    },
-    include: {
-      sport: true
     }
   });
   console.log(newLeague);
