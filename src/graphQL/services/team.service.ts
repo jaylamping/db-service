@@ -1,4 +1,4 @@
-import { League, PrismaClient, Sport } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { extractSelection } from '../utils/extractSelections';
 import { GraphQLResolveInfo } from 'graphql';
 
@@ -42,16 +42,8 @@ export const createTeam = async ({ name, location, logo_url, sportId, leagueId }
       name,
       location,
       logo_url,
-      sport: {
-        connect: {
-          id: sportId
-        }
-      },
-      league: {
-        connect: {
-          id: leagueId
-        }
-      }
+      sportId,
+      leagueId
     }
   });
 };
