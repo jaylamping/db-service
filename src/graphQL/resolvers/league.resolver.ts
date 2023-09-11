@@ -12,12 +12,12 @@ export const leagueResolver = {
   },
   Mutation: {
     createLeague: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
-      return await createLeague({ name: args.input.name, logo_url: args.input.logo_url, sportId: args.input.sportId });
+      return await createLeague({ name: args.input.name, logo_url: args.input.logo_url, sport: args.input.sportId });
     },
     updateLeague: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
       return await updateLeague({
         id: args.input.id,
-        data: { name: args.input.name, logo_url: args.input.logo_url, sportId: args.input.sportId }
+        data: { name: args.input.name, logo_url: args.input.logo_url, sport: args.input.sportId }
       });
     },
     deleteLeague: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {

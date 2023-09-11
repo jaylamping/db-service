@@ -27,8 +27,8 @@ input MatchupInput {
   dateTime: String
   homeTeam: ID
   awayTeam: ID
-  sport: ID
-  league: ID
+  sport: String
+  league: String
   inProgress: Boolean
   primarySteam: String
   secondaryStream: String

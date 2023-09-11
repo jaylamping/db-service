@@ -18,8 +18,8 @@ input TeamInput {
   name: String
   location: String
   logo_url: String
-  leagueId: ID!
-  sportId: ID!
+  league: String!
+  sport: String!
 }
 
 type Mutation {
