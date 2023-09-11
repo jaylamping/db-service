@@ -25,6 +25,7 @@ interface MatchupInput {
   secondaryStream?: string;
   tertiaryStream?: string;
   fallbackStream?: string;
+  externalId: string;
 }
 
 export const getMatchups = async ({ info }: GetMatchupsArgs) => {
@@ -55,7 +56,8 @@ export const createMatchup = async ({
   primaryStream,
   secondaryStream,
   tertiaryStream,
-  fallbackStream
+  fallbackStream,
+  externalId
 }: MatchupInput) => {
   return await prisma.matchup.create({
     data: {
@@ -70,7 +72,8 @@ export const createMatchup = async ({
       primaryStream,
       secondaryStream,
       tertiaryStream,
-      fallbackStream
+      fallbackStream,
+      externalId
     }
   });
 };
