@@ -15,7 +15,7 @@ interface GetLeagueArgs extends GetLeaguesArgs {
 interface LeagueInput {
   name: string;
   logo_url?: string;
-  sportId: string;
+  sport: string;
 }
 
 export const getLeagues = async ({ info }: GetLeaguesArgs) => {
@@ -23,7 +23,7 @@ export const getLeagues = async ({ info }: GetLeaguesArgs) => {
   const teamInd = extractedSelections.includes('team');
   const matchupInd = extractedSelections.includes('matchup');
 
-  return await prisma.league.findMany({ include: { team: teamInd, matchup: matchupInd } });
+  return await prisma.league.findMany({ include: { Team: teamInd, Matchup: matchupInd } });
 };
 
 export const getLeague = async ({ id, info }: GetLeagueArgs) => {
@@ -31,15 +31,15 @@ export const getLeague = async ({ id, info }: GetLeagueArgs) => {
   const teamInd = extractedSelections.includes('team');
   const matchupInd = extractedSelections.includes('matchup');
 
-  return await prisma.league.findUnique({ where: { id }, include: { team: teamInd, matchup: matchupInd } });
+  return await prisma.league.findUnique({ where: { id }, include: { Team: teamInd, Matchup: matchupInd } });
 };
 
-export const createLeague = async ({ name, logo_url, sportId }: LeagueInput) => {
+export const createLeague = async ({ name, logo_url, sport }: LeagueInput) => {
   return await prisma.league.create({
     data: {
       name,
       logo_url,
-      sportId
+      sport
     }
   });
 };

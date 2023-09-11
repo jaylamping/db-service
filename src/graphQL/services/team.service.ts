@@ -16,8 +16,8 @@ interface TeamInput {
   name: string;
   location: string;
   logo_url: string;
-  leagueId: string;
-  sportId: string;
+  league: string;
+  sport: string;
 }
 
 export const getTeams = async ({ info }: GetTeamsArgs) => {
@@ -25,7 +25,7 @@ export const getTeams = async ({ info }: GetTeamsArgs) => {
   const leagueInd = extractedSelections.includes('league');
   const sportInd = extractedSelections.includes('sport');
 
-  return await prisma.team.findMany({ include: { league: leagueInd, sport: sportInd } });
+  return await prisma.team.findMany({ include: { League: leagueInd, Sport: sportInd } });
 };
 
 export const getTeam = async ({ id, info }: GetTeamArgs) => {
@@ -33,17 +33,17 @@ export const getTeam = async ({ id, info }: GetTeamArgs) => {
   const leagueInd = extractedSelections.includes('league');
   const sportInd = extractedSelections.includes('sport');
 
-  return await prisma.team.findUnique({ where: { id }, include: { league: leagueInd, sport: sportInd } });
+  return await prisma.team.findUnique({ where: { id }, include: { League: leagueInd, Sport: sportInd } });
 };
 
-export const createTeam = async ({ name, location, logo_url, sportId, leagueId }: TeamInput) => {
+export const createTeam = async ({ name, location, logo_url, sport, league }: TeamInput) => {
   return await prisma.team.create({
     data: {
       name,
       location,
       logo_url,
-      sportId,
-      leagueId
+      sport,
+      league
     }
   });
 };

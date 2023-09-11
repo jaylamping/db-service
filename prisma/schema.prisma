@@ -13,21 +13,21 @@ model Sport {
   logo_url  String?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  league    League[]
-  matchup   Matchup[]
-  team      Team[]
+  League    League[]
+  Matchup   Matchup[]
+  Team      Team[]
 }
 
 model League {
   id        String    @id @default(uuid()) @map("_id")
   name      String    @unique
   logo_url  String?
-  sport     Sport     @relation(fields: [sportId], references: [id])
-  sportId   String
+  Sport     Sport     @relation(fields: [sport], references: [id])
+  sport     String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  team      Team[]
-  matchup   Matchup[]
+  Team      Team[]
+  Matchup   Matchup[]
 }
 
 model Team {
@@ -35,16 +35,14 @@ model Team {
   name      String
   location  String?
   logo_url  String?
-  league    League    @relation(fields: [leagueId], references: [id])
-  leagueId  String
-  sport     Sport     @relation(fields: [sportId], references: [id])
-  sportId   String
+  League    League    @relation(fields: [league], references: [name])
+  league    String
+  Sport     Sport     @relation(fields: [sport], references: [name])
+  sport     String
   homeTeam  Matchup[] @relation("homeTeam")
   awayTeam  Matchup[] @relation("awayTeam")
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-
-  @@unique([name, leagueId])
 }
 
 model Matchup {
@@ -56,10 +54,10 @@ model Matchup {
   homeTeamId      String
   awayTeam        Team     @relation("awayTeam", fields: [awayTeamId], references: [id])
   awayTeamId      String
-  sport           Sport    @relation(fields: [sportId], references: [id])
-  sportId         String
-  league          League   @relation(fields: [leagueId], references: [id])
-  leagueId        String
+  Sport           Sport    @relation(fields: [sport], references: [id])
+  sport           String
+  League          League   @relation(fields: [league], references: [id])
+  league          String
   logo_url        String?
   inProgress      Boolean
   primaryStream   String
