@@ -1,11 +1,8 @@
-import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
 import axios from 'axios';
 import { createTeam } from './graphql/services/team.service';
 
 dotenv.config();
-
-const prisma = new PrismaClient();
 
 const populateNFLTeams = async () => {
   const teams = await axios
