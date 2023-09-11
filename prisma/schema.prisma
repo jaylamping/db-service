@@ -39,8 +39,8 @@ model Team {
   league    String
   Sport     Sport     @relation(fields: [sport], references: [name])
   sport     String
-  homeTeam  Matchup[] @relation("homeTeam")
-  awayTeam  Matchup[] @relation("awayTeam")
+  HomeTeam  Matchup[] @relation("HomeTeam")
+  AwayTeam  Matchup[] @relation("AwayTeam")
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
@@ -50,20 +50,22 @@ model Matchup {
   name            String
   description     String?
   dateTime        DateTime
-  homeTeam        Team     @relation("homeTeam", fields: [homeTeamId], references: [id])
-  homeTeamId      String
-  awayTeam        Team     @relation("awayTeam", fields: [awayTeamId], references: [id])
-  awayTeamId      String
+  HomeTeam        Team     @relation("HomeTeam", fields: [homeTeam], references: [id])
+  homeTeam        String
+  AwayTeam        Team     @relation("AwayTeam", fields: [awayTeam], references: [id])
+  awayTeam        String
   Sport           Sport    @relation(fields: [sport], references: [id])
   sport           String
   League          League   @relation(fields: [league], references: [id])
   league          String
   logo_url        String?
-  inProgress      Boolean
-  primaryStream   String
-  secondaryStream String
-  tertiaryStream  String
-  fallbackStream  String
+  inProgress      Boolean?
+  primaryStream   String?
+  secondaryStream String?
+  tertiaryStream  String?
+  fallbackStream  String?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+
+  @@unique([homeTeam, awayTeam, dateTime])
 }
