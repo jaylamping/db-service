@@ -24,4 +24,4 @@ const populateNFLTeams = async () => {
   });
 };
 
-populateNFLTeams();
+//populateNFLTeams();

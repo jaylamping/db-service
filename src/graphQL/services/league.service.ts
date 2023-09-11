@@ -35,15 +35,13 @@ export const getLeague = async ({ id, info }: GetLeagueArgs) => {
 };
 
 export const createLeague = async ({ name, logo_url, sportId }: LeagueInput) => {
-  console.log('hi');
-  const newLeague = await prisma.league.create({
+  return await prisma.league.create({
     data: {
       name,
       logo_url,
       sportId
     }
   });
-  console.log(newLeague);
 };
 
 export const updateLeague = async ({ id, data }: { id: string; data: LeagueInput }) => {
