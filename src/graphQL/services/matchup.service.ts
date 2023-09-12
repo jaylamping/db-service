@@ -88,6 +88,6 @@ export const updateMatchup = async ({ id, data }: { id: string; data: MatchupInp
   return await prisma.matchup.update({ where: { id }, data });
 };
 
-export const deleteTeam = async ({ id }: { id: string }) => {
+export const deleteMatchup = async ({ id }: { id: string }) => {
   return await prisma.matchup.delete({ where: { id } });
 };

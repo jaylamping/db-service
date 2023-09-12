@@ -3,6 +3,7 @@ import path from 'path';
 import { sportResolver } from './resolvers/sport.resolver';
 import { leagueResolver } from './resolvers/league.resolver';
 import { teamResolver } from './resolvers/team.resolver';
+import { matchupResolver } from './resolvers/matchup.resolver';
 
 const sportTypes = readFileSync(path.join(__dirname, './typeDefs/sport.graphql'), {
   encoding: 'utf-8'
@@ -31,11 +32,13 @@ export const resolvers = {
   Query: {
     ...sportResolver.Query,
     ...leagueResolver.Query,
-    ...teamResolver.Query
+    ...teamResolver.Query,
+    ...matchupResolver.Query
   },
   Mutation: {
     ...sportResolver.Mutation,
     ...leagueResolver.Mutation,
-    ...teamResolver.Mutation
+    ...teamResolver.Mutation,
+    ...matchupResolver.Mutation
   }
 };
