@@ -52,9 +52,11 @@ model Matchup {
   name            String
   description     String?
   dateTime        DateTime
-  HomeTeam        Team     @relation("HomeTeam", fields: [homeTeam], references: [id])
+  HomeTeam        Team     @relation("HomeTeam", fields: [homeTeamId], references: [externalId])
+  homeTeamId      String
   homeTeam        String
-  AwayTeam        Team     @relation("AwayTeam", fields: [awayTeam], references: [id])
+  AwayTeam        Team     @relation("AwayTeam", fields: [awayTeamId], references: [externalId])
+  awayTeamId      String
   awayTeam        String
   Sport           Sport    @relation(fields: [sport], references: [id])
   sport           String

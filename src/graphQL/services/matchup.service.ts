@@ -16,7 +16,9 @@ interface MatchupInput {
   name: string;
   description?: string;
   dateTime: string | Date;
+  homeTeamId: string;
   homeTeam: string;
+  awayTeamId: string;
   awayTeam: string;
   logo_url?: string;
   league: string;
@@ -48,7 +50,9 @@ export const createMatchup = async ({
   name,
   description,
   dateTime,
+  homeTeamId,
   homeTeam,
+  awayTeamId,
   awayTeam,
   logo_url,
   sport,
@@ -64,7 +68,9 @@ export const createMatchup = async ({
       name,
       description,
       dateTime,
+      homeTeamId,
       homeTeam,
+      awayTeamId,
       awayTeam,
       logo_url,
       sport,
