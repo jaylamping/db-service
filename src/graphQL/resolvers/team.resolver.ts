@@ -17,7 +17,8 @@ export const teamResolver = {
         logo_url: args.input.logo_url,
         location: args.input.location,
         league: args.input.league,
-        sport: args.input.sport
+        sport: args.input.sport,
+        externalId: args.input.externalId
       });
     },
     updateTeam: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
@@ -28,7 +29,8 @@ export const teamResolver = {
           logo_url: args.input.logo_url,
           location: args.input.location,
           league: args.input.league,
-          sport: args.input.sport
+          sport: args.input.sport,
+          externalId: args.input.externalId
         }
       });
     },
