@@ -1,5 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { createTeam, deleteTeam, updateTeam, getTeam, getTeams } from '../services/team.service';
+import { createTeam, deleteTeam, updateTeam, getTeam, getTeams, getTeamsByLeague } from '../services/team.service';
 
 export const teamResolver = {
   Query: {
@@ -8,6 +8,9 @@ export const teamResolver = {
     },
     team: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
       return await getTeam({ id: args.id, info });
+    },
+    teamsByLeague: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
+      return await getTeamsByLeague({ league: args.league, info });
     }
   },
   Mutation: {

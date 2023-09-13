@@ -6,6 +6,7 @@ const prisma = new PrismaClient();
 
 interface GetTeamsArgs {
   info: GraphQLResolveInfo;
+  league?: string;
 }
 
 interface GetTeamArgs extends GetTeamsArgs {
@@ -35,6 +36,14 @@ export const getTeam = async ({ id, info }: GetTeamArgs) => {
   const sportInd = extractedSelections.includes('sport');
 
   return await prisma.team.findUnique({ where: { id }, include: { League: leagueInd, Sport: sportInd } });
+};
+
+export const getTeamsByLeague = async ({ league, info }: GetTeamsArgs) => {
+  const extractedSelections = extractSelection(info);
+  const leagueInd = extractedSelections.includes('league');
+  const sportInd = extractedSelections.includes('sport');
+
+  return await prisma.team.findMany({ where: { league }, include: { League: leagueInd, Sport: sportInd } });
 };
 
 export const createTeam = async ({ name, location, logo_url, sport, league, externalId }: TeamInput) => {

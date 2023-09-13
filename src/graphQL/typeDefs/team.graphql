@@ -12,6 +12,7 @@ type Team {
 type Query {
   teams: [Team]
   team(id: ID!): Team
+  teamsByLeague(league: String!): [League]
 }
 
 input TeamInput {
