@@ -47,4 +47,4 @@ const populateMLBTeams = async () => {
 };
 
 //populateNFLTeams();
-//populateMLBTeams();
+populateMLBTeams();
