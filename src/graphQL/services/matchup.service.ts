@@ -38,6 +38,21 @@ export const getMatchups = async ({ info }: GetMatchupsArgs) => {
   return await prisma.matchup.findMany({ include: { League: leagueInd, Sport: sportInd } });
 };
 
+export const getUpcomingMatchups = async ({ info }: GetMatchupsArgs) => {
+  const extractedSelections = extractSelection(info);
+  const leagueInd = extractedSelections.includes('league');
+  const sportInd = extractedSelections.includes('sport');
+
+  return await prisma.matchup.findMany({
+    where: {
+      dateTime: {
+        gt: new Date()
+      }
+    },
+    include: { League: leagueInd, Sport: sportInd }
+  });
+};
+
 export const getMatchup = async ({ id, info }: GetMatchupArgs) => {
   const extractedSelections = extractSelection(info);
   const leagueInd = extractedSelections.includes('league');

@@ -1,10 +1,20 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { createMatchup, deleteMatchup, updateMatchup, getMatchup, getMatchups } from '../services/matchup.service';
+import {
+  createMatchup,
+  deleteMatchup,
+  updateMatchup,
+  getMatchup,
+  getMatchups,
+  getUpcomingMatchups
+} from '../services/matchup.service';
 
 export const matchupResolver = {
   Query: {
     matchups: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
       return await getMatchups({ info });
+    },
+    getUpcomingMatchups: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
+      return await getUpcomingMatchups({ info });
     },
     matchup: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
       return await getMatchup({ id: args.id, info });

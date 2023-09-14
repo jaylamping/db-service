@@ -22,6 +22,7 @@ type Matchup {
 
 type Query {
   matchups: [Matchup]
+  getUpcomingMatchups: [Matchup]
   matchup(id: ID!): Matchup
 }
 
