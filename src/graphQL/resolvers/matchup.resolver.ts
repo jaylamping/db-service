@@ -5,7 +5,8 @@ import {
   updateMatchup,
   getMatchup,
   getMatchups,
-  getUpcomingMatchups
+  getUpcomingMatchups,
+  addURLToMatchup
 } from '../services/matchup.service';
 
 export const matchupResolver = {
@@ -64,6 +65,12 @@ export const matchupResolver = {
     },
     deleteMatchup: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
       return await deleteMatchup({ id: args.input.id });
+    },
+    addURLToMatchup: async (parent: any, args: Record<string, any>, context: any, info: GraphQLResolveInfo) => {
+      return await addURLToMatchup({
+        id: args.id,
+        url: args.url
+      });
     }
   }
 };

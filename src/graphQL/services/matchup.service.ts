@@ -106,3 +106,17 @@ export const updateMatchup = async ({ id, data }: { id: string; data: MatchupInp
 export const deleteMatchup = async ({ id }: { id: string }) => {
   return await prisma.matchup.delete({ where: { id } });
 };
+
+export const addURLToMatchup = async ({ id, url }: { id: string; url: string }) => {
+  const matchup = await prisma.matchup.findUnique({ where: { id } });
+
+  if (matchup?.primaryStream === null) {
+    return await prisma.matchup.update({ where: { id }, data: { primaryStream: url } });
+  } else if (matchup?.secondaryStream === null) {
+    return await prisma.matchup.update({ where: { id }, data: { secondaryStream: url } });
+  } else if (matchup?.tertiaryStream === null) {
+    return await prisma.matchup.update({ where: { id }, data: { tertiaryStream: url } });
+  } else if (matchup?.fallbackStream === null) {
+    return await prisma.matchup.update({ where: { id }, data: { fallbackStream: url } });
+  }
+};

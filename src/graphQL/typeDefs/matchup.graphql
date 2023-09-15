@@ -49,4 +49,5 @@ type Mutation {
   createMatchup(input: MatchupInput): Matchup
   updateMatchup(id: ID!, input: MatchupInput): Matchup
   deleteMatchup(id: ID!): Matchup
+  addURLToMatchup(id: ID!, url: String!): Matchup
 }
