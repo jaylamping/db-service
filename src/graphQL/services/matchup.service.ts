@@ -43,10 +43,14 @@ export const getUpcomingMatchups = async ({ info }: GetMatchupsArgs) => {
   const leagueInd = extractedSelections.includes('league');
   const sportInd = extractedSelections.includes('sport');
 
+  const currentDate = new Date();
+  // get all in progress matchups too
+  currentDate.setHours(currentDate.getHours() - 4);
+
   return await prisma.matchup.findMany({
     where: {
       dateTime: {
-        gt: new Date()
+        gt: currentDate
       }
     },
     include: { League: leagueInd, Sport: sportInd }
