@@ -110,13 +110,13 @@ export const deleteMatchup = async ({ id }: { id: string }) => {
 export const addURLToMatchup = async ({ id, url }: { id: string; url: string }) => {
   const matchup = await prisma.matchup.findUnique({ where: { id } });
 
-  if (matchup?.primaryStream === null) {
+  if (matchup?.primaryStream === null && matchup?.primaryStream !== url) {
     return await prisma.matchup.update({ where: { id }, data: { primaryStream: url } });
-  } else if (matchup?.secondaryStream === null) {
+  } else if (matchup?.secondaryStream === null && matchup?.secondaryStream !== url) {
     return await prisma.matchup.update({ where: { id }, data: { secondaryStream: url } });
-  } else if (matchup?.tertiaryStream === null) {
+  } else if (matchup?.tertiaryStream === null && matchup?.tertiaryStream !== url) {
     return await prisma.matchup.update({ where: { id }, data: { tertiaryStream: url } });
-  } else if (matchup?.fallbackStream === null) {
+  } else if (matchup?.fallbackStream === null && matchup?.fallbackStream !== url) {
     return await prisma.matchup.update({ where: { id }, data: { fallbackStream: url } });
   }
 };
