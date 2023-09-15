@@ -44,8 +44,8 @@ export const getUpcomingMatchups = async ({ info }: GetMatchupsArgs) => {
   const sportInd = extractedSelections.includes('sport');
 
   const currentDate = new Date();
-  // get all in progress matchups too
-  currentDate.setHours(currentDate.getHours() - 4);
+  // get all in progress matchups too - will definitely need to change this later
+  currentDate.setHours(currentDate.getHours() - 3);
 
   return await prisma.matchup.findMany({
     where: {
